@@ -8,7 +8,7 @@ namespace WebAPI_JWT_Auth_Example.Models
 {
     public class ApplicationUser
     {
-        public int Id { get; set; }
+        public int UserId { get; set; }
 
         public string UserName { get; set; }
 
@@ -16,5 +16,7 @@ namespace WebAPI_JWT_Auth_Example.Models
 
         [JsonIgnore]
         public string Password { get; set; }
+
+        public int RoleId { get; set; }
     }
 }
