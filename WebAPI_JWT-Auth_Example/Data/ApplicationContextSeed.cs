@@ -23,6 +23,12 @@ namespace WebAPI_JWT_Auth_Example.Data
                     await applicationContext.UserRole.AddRangeAsync(GetRolesSeed());
                     await applicationContext.SaveChangesAsync();
                 }
+
+                if (!applicationContext.Item.Any())
+                {
+                    await applicationContext.Item.AddRangeAsync(GetItemsSeed());
+                    await applicationContext.SaveChangesAsync();
+                }
             }
             catch (Exception)
             {
@@ -48,6 +54,18 @@ namespace WebAPI_JWT_Auth_Example.Data
             {
                 new UserRole { UserRoleId = 1, Name = "admin"},
                 new UserRole { UserRoleId = 2, Name = "user"}
+            };
+        }
+
+        private static IEnumerable<Item> GetItemsSeed()
+        {
+            return new List<Item>
+            {
+                new Item { ItemId = 1, Name = "Item1", Price = 100.25 },
+                new Item { ItemId = 2, Name = "Item2", Price = 70.50 },
+                new Item { ItemId = 3, Name = "Item3", Price = 63.99 },
+                new Item { ItemId = 4, Name = "Item4", Price = 120.50 },
+                new Item { ItemId = 5, Name = "Item5", Price = 47.69 }
             };
         }
     }

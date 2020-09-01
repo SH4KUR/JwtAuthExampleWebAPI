@@ -15,7 +15,8 @@ namespace WebAPI_JWT_Auth_Example.Data
         }
 
         public DbSet<User> User { get; set; }
-
         public DbSet<UserRole> UserRole { get; set; }
+        public DbSet<Item> Item { get; set; }
+
     }
 }
