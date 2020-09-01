@@ -25,16 +25,16 @@ namespace WebAPI_JWT_Auth_Example.Controllers
 
         // GET: api/Items
         [HttpGet]
-        public async Task<ActionResult<IEnumerable<Item>>> GetItem()
+        public async Task<ActionResult<IEnumerable<Item>>> GetItems()
         {
-            return await _context.Item.ToListAsync();
+            return await _context.Items.ToListAsync();
         }
 
         // GET: api/Items/5
         [HttpGet("{id}")]
         public async Task<ActionResult<Item>> GetItem(int id)
         {
-            var item = await _context.Item.FindAsync(id);
+            var item = await _context.Items.FindAsync(id);
 
             if (item == null)
             {
@@ -78,7 +78,7 @@ namespace WebAPI_JWT_Auth_Example.Controllers
         [HttpPost]
         public async Task<ActionResult<Item>> PostItem(Item item)
         {
-            await _context.Item.AddAsync(item);
+            await _context.Items.AddAsync(item);
             await _context.SaveChangesAsync();
 
             return CreatedAtAction("GetItem", new { id = item.ItemId }, item);
@@ -88,13 +88,13 @@ namespace WebAPI_JWT_Auth_Example.Controllers
         [HttpDelete("{id}")]
         public async Task<ActionResult<Item>> DeleteItem(int id)
         {
-            var item = await _context.Item.FindAsync(id);
+            var item = await _context.Items.FindAsync(id);
             if (item == null)
             {
                 return NotFound();
             }
 
-            _context.Item.Remove(item);
+            _context.Items.Remove(item);
             await _context.SaveChangesAsync();
 
             return item;
@@ -102,7 +102,7 @@ namespace WebAPI_JWT_Auth_Example.Controllers
 
         private bool ItemExists(int id)
         {
-            return _context.Item.Any(e => e.ItemId == id);
+            return _context.Items.Any(e => e.ItemId == id);
         }
     }
 }

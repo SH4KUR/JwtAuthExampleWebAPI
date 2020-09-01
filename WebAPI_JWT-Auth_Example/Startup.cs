@@ -1,21 +1,17 @@
 using System;
-using System.Collections.Generic;
-using System.Linq;
 using System.Text;
-using System.Threading.Tasks;
 using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
-using Microsoft.AspNetCore.HttpsPolicy;
-using Microsoft.AspNetCore.Mvc;
+using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
-using Microsoft.Extensions.Logging;
 using Microsoft.IdentityModel.Tokens;
 using WebAPI_JWT_Auth_Example.Data;
 using WebAPI_JWT_Auth_Example.Helpers;
+using WebAPI_JWT_Auth_Example.Models;
 
 namespace WebAPI_JWT_Auth_Example
 {
@@ -33,6 +29,10 @@ namespace WebAPI_JWT_Auth_Example
         {
             // use in-memory database
             services.AddDbContext<ApplicationContext>(options => options.UseInMemoryDatabase("AppTestDb"));
+
+            // use identity for users
+            services.AddIdentity<ApplicationUser, IdentityRole>(options => options.SignIn.RequireConfirmedAccount = true)
+                .AddEntityFrameworkStores<ApplicationContext>();
 
             services.AddCors();
             services.AddControllers();
@@ -68,7 +68,6 @@ namespace WebAPI_JWT_Auth_Example
                         ClockSkew = TimeSpan.Zero
                     };
                 });
-
         }
 
         public void Configure(IApplicationBuilder app, IWebHostEnvironment env)

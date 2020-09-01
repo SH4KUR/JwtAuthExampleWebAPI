@@ -2,31 +2,47 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using Microsoft.AspNetCore.Identity;
+using Microsoft.EntityFrameworkCore.Migrations.Operations;
+using Microsoft.Extensions.DependencyInjection;
 using WebAPI_JWT_Auth_Example.Models;
 
 namespace WebAPI_JWT_Auth_Example.Data
 {
     public static class ApplicationContextSeed
     {
-        public static async Task SeedAsync(ApplicationContext applicationContext)
+        public static async Task SeedAsync(IServiceProvider serviceProvider)
         {
+            var applicationContext = serviceProvider.GetService<ApplicationContext>();
+            var userManager = serviceProvider.GetRequiredService<UserManager<ApplicationUser>>();
+            var roleManager = serviceProvider.GetRequiredService<RoleManager<IdentityRole>>();
+
             try
             {
-                if (!applicationContext.User.Any())
+                if (!applicationContext.Roles.Any())
                 {
-                    await applicationContext.User.AddRangeAsync(GetUsersSeed());
-                    await applicationContext.SaveChangesAsync();
+                    await roleManager.CreateAsync(new IdentityRole("admin"));
+                    await roleManager.CreateAsync(new IdentityRole("user"));
                 }
 
-                if (!applicationContext.UserRole.Any())
+                if (!applicationContext.Users.Any())
                 {
-                    await applicationContext.UserRole.AddRangeAsync(GetRolesSeed());
-                    await applicationContext.SaveChangesAsync();
+                    // create default user
+                    var user = new ApplicationUser { UserName = "SingleBoy", Email = "boy.one@gmail.com" };
+                    await userManager.CreateAsync(user, "S1ngle_Boy");
+                    user = await userManager.FindByEmailAsync(user.Email);
+                    await userManager.AddToRoleAsync(user, "user");
+
+                    // create default admin
+                    var admin = new ApplicationUser { UserName = "SecondHand", Email = "2ndhand@gmail.com" };
+                    await userManager.CreateAsync(admin, "For_Life19");
+                    admin = await userManager.FindByEmailAsync(admin.Email);
+                    await userManager.AddToRoleAsync(admin, "admin");
                 }
 
-                if (!applicationContext.Item.Any())
+                if (!applicationContext.Items.Any())
                 {
-                    await applicationContext.Item.AddRangeAsync(GetItemsSeed());
+                    await applicationContext.Items.AddRangeAsync(GetItemsSeed());
                     await applicationContext.SaveChangesAsync();
                 }
             }
@@ -34,27 +50,6 @@ namespace WebAPI_JWT_Auth_Example.Data
             {
                 //TODO: add logger end exceptions
             }
-        }
-
-        private static IEnumerable<User> GetUsersSeed()
-        {
-            return new List<User>
-            {
-                new User { UserId = 1, UserName = "UsOneEr", Email = "userlogin@gmail.com", Password = "qwerty123", UserRoleId = 1 },
-                new User { UserId = 2, UserName = "SecondHand", Email = "2ndhand@gmail.com", Password = "pass-29", UserRoleId = 2 },
-                new User { UserId = 3, UserName = "Triple H", Email = "hhh@gmail.com", Password = "h1n1+b2e2", UserRoleId = 2 },
-                new User { UserId = 4, UserName = "SingleBoy", Email = "boy.ones@gmail.com", Password = "s1ngle-boy", UserRoleId = 1 },
-                new User { UserId = 5, UserName = "4Life", Email = "life4@gmail.com", Password = "for_life19", UserRoleId = 2 }
-            };
-        }
-
-        private static IEnumerable<UserRole> GetRolesSeed()
-        {
-            return new List<UserRole>
-            {
-                new UserRole { UserRoleId = 1, Name = "admin"},
-                new UserRole { UserRoleId = 2, Name = "user"}
-            };
         }
 
         private static IEnumerable<Item> GetItemsSeed()
