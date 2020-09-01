@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace WebAPI_JWT_Auth_Example.Models
 {
-    public class ApplicationUser
+    public class User
     {
         public int UserId { get; set; }
 
@@ -17,6 +17,6 @@ namespace WebAPI_JWT_Auth_Example.Models
         [JsonIgnore]
         public string Password { get; set; }
 
-        public int RoleId { get; set; }
+        public int UserRoleId { get; set; }
     }
 }

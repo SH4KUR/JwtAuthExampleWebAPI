@@ -30,7 +30,7 @@ namespace WebAPI_JWT_Auth_Example
 
         public void ConfigureServices(IServiceCollection services)
         {
-            services.AddDbContext<UsersDbContext>(options => options.UseInMemoryDatabase("Users"));
+            services.AddDbContext<ApplicationContext>(options => options.UseInMemoryDatabase("AppTestDb"));
 
             services.AddControllers();
             services.AddAuthentication(JwtBearerDefaults.AuthenticationScheme)

@@ -5,9 +5,9 @@ using System.Threading.Tasks;
 
 namespace WebAPI_JWT_Auth_Example.Models
 {
-    public class Role
+    public class UserRole
     {
-        public int RoleId { get; set; }
+        public int UserRoleId { get; set; }
 
         public string Name { get; set; }
     }

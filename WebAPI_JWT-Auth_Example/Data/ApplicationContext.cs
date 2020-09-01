@@ -7,15 +7,15 @@ using WebAPI_JWT_Auth_Example.Models;
 
 namespace WebAPI_JWT_Auth_Example.Data
 {
-    public class UsersDbContext : DbContext
+    public class ApplicationContext : DbContext
     {
-        public UsersDbContext(DbContextOptions<UsersDbContext> options) : base(options)
+        public ApplicationContext(DbContextOptions<ApplicationContext> options) : base(options)
         {
 
         }
 
-        public DbSet<ApplicationUser> ApplicationUsers { get; set; }
+        public DbSet<User> User { get; set; }
 
-        public DbSet<Role> Role { get; set; }
+        public DbSet<UserRole> UserRole { get; set; }
     }
 }
