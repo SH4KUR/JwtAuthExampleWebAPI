@@ -15,6 +15,7 @@ using Microsoft.Extensions.Hosting;
 using Microsoft.Extensions.Logging;
 using Microsoft.IdentityModel.Tokens;
 using WebAPI_JWT_Auth_Example.Data;
+using WebAPI_JWT_Auth_Example.Helpers;
 
 namespace WebAPI_JWT_Auth_Example
 {
@@ -30,10 +31,24 @@ namespace WebAPI_JWT_Auth_Example
 
         public void ConfigureServices(IServiceCollection services)
         {
+            // use in-memory database
             services.AddDbContext<ApplicationContext>(options => options.UseInMemoryDatabase("AppTestDb"));
 
+            services.AddCors();
             services.AddControllers();
-            services.AddAuthentication(JwtBearerDefaults.AuthenticationScheme)
+
+            // configure strongly typed settings objects
+            var jwtAppSettingSection = Configuration.GetSection("JwtSettings");
+            services.Configure<AppSettings>(jwtAppSettingSection);
+            var jwtAppTokenSettings = jwtAppSettingSection.Get<AppSettings>();
+            var key = Encoding.UTF8.GetBytes(jwtAppTokenSettings.Key);
+
+            // jwt auth configs
+            services.AddAuthentication(options => 
+            {
+                options.DefaultAuthenticateScheme = JwtBearerDefaults.AuthenticationScheme; 
+                options.DefaultChallengeScheme = JwtBearerDefaults.AuthenticationScheme;
+            })
                 .AddJwtBearer(options =>
                 {
                     options.SaveToken = true;
@@ -42,24 +57,31 @@ namespace WebAPI_JWT_Auth_Example
                     {
                         ValidateIssuer = true,
                         ValidateIssuerSigningKey = true,
-                        ValidIssuer = Configuration["JWT:Issuer"],
+                        ValidIssuer = jwtAppTokenSettings.Issuer,
 
                         ValidateAudience = true,
-                        ValidAudience = Configuration["JWT:Audience"],
+                        ValidAudience = jwtAppTokenSettings.Audience,
 
                         ValidateLifetime = true,
-                        IssuerSigningKey = new SymmetricSecurityKey(Encoding.UTF8.GetBytes(Configuration["JWT:Key"]))
+                        IssuerSigningKey = new SymmetricSecurityKey(key),
+
+                        ClockSkew = TimeSpan.Zero
                     };
                 });
+
         }
 
-        // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
         public void Configure(IApplicationBuilder app, IWebHostEnvironment env)
         {
             if (env.IsDevelopment())
             {
                 app.UseDeveloperExceptionPage();
             }
+
+            app.UseCors(builder => builder
+                .AllowAnyOrigin()
+                .AllowAnyMethod()
+                .AllowAnyHeader());
 
             app.UseHttpsRedirection();
 
