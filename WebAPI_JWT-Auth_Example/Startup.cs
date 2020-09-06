@@ -33,7 +33,7 @@ namespace WebAPI_JWT_Auth_Example
             services.AddDbContext<ApplicationContext>(options => options.UseInMemoryDatabase("AppTestDb"));
 
             // use identity for users
-            services.AddIdentity<ApplicationUser, IdentityRole>(options => options.SignIn.RequireConfirmedAccount = false)
+            services.AddIdentity<ApplicationUser, IdentityRole>()
                 .AddEntityFrameworkStores<ApplicationContext>()
                 .AddDefaultTokenProviders();
 
