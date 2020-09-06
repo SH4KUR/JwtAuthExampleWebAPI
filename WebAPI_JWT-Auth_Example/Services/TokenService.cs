@@ -8,6 +8,7 @@ using System.Threading.Tasks;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.Extensions.Options;
 using Microsoft.IdentityModel.Tokens;
+using WebAPI_JWT_Auth_Example.Entities;
 using WebAPI_JWT_Auth_Example.Helpers;
 using WebAPI_JWT_Auth_Example.Models;
 using WebAPI_JWT_Auth_Example.Services.Interfaces;
@@ -38,8 +39,8 @@ namespace WebAPI_JWT_Auth_Example.Services
             var roles = await _userManager.GetRolesAsync(user);
             var claims = new List<Claim>
             {
-                new Claim(ClaimTypes.Name, user.UserName),
-                new Claim(ClaimTypes.Email, user.Email)
+                new Claim(JwtRegisteredClaimNames.Sub, user.UserName),
+                new Claim(JwtRegisteredClaimNames.Email, user.Email)
             };
             claims.AddRange(roles.Select(role => new Claim(ClaimTypes.Role, role)));
 

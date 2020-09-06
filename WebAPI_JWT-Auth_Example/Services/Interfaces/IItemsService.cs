@@ -5,7 +5,7 @@ using System.Threading.Tasks;
 
 namespace WebAPI_JWT_Auth_Example.Services.Interfaces
 {
-    interface IItemsService
+    public interface IItemsService
     {
     }
 }

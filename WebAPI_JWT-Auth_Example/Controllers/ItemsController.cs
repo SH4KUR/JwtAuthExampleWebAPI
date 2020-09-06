@@ -7,6 +7,7 @@ using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using WebAPI_JWT_Auth_Example.Data;
+using WebAPI_JWT_Auth_Example.Entities;
 using WebAPI_JWT_Auth_Example.Models;
 
 namespace WebAPI_JWT_Auth_Example.Controllers

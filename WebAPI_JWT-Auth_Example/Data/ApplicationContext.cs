@@ -4,6 +4,7 @@ using System.Linq;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore;
+using WebAPI_JWT_Auth_Example.Entities;
 using WebAPI_JWT_Auth_Example.Models;
 
 namespace WebAPI_JWT_Auth_Example.Data

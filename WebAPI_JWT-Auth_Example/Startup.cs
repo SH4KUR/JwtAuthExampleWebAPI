@@ -11,6 +11,7 @@ using Microsoft.Extensions.Hosting;
 using Microsoft.IdentityModel.Tokens;
 using WebAPI_JWT_Auth_Example.Configuration;
 using WebAPI_JWT_Auth_Example.Data;
+using WebAPI_JWT_Auth_Example.Entities;
 using WebAPI_JWT_Auth_Example.Helpers;
 using WebAPI_JWT_Auth_Example.Models;
 
@@ -32,10 +33,20 @@ namespace WebAPI_JWT_Auth_Example
             services.AddDbContext<ApplicationContext>(options => options.UseInMemoryDatabase("AppTestDb"));
 
             // use identity for users
-            services.AddIdentity<ApplicationUser, IdentityRole>(options => options.SignIn.RequireConfirmedAccount = true)
-                .AddEntityFrameworkStores<ApplicationContext>();
+            services.AddIdentity<ApplicationUser, IdentityRole>(options => options.SignIn.RequireConfirmedAccount = false)
+                .AddEntityFrameworkStores<ApplicationContext>()
+                .AddDefaultTokenProviders();
 
-            services.AddCors();
+            services.AddCors(options =>
+            {
+                options.AddDefaultPolicy(builder =>
+                {
+                    builder.AllowAnyOrigin()
+                        .AllowAnyMethod()
+                        .AllowAnyHeader();
+                });
+            });
+
             services.AddControllers();
 
             // extension for configure services
@@ -81,10 +92,7 @@ namespace WebAPI_JWT_Auth_Example
                 app.UseDeveloperExceptionPage();
             }
 
-            app.UseCors(builder => builder
-                .AllowAnyOrigin()
-                .AllowAnyMethod()
-                .AllowAnyHeader());
+            app.UseCors();
 
             app.UseHttpsRedirection();
 

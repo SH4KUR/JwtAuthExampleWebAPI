@@ -5,6 +5,7 @@ using System.Threading.Tasks;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore.Migrations.Operations;
 using Microsoft.Extensions.DependencyInjection;
+using WebAPI_JWT_Auth_Example.Entities;
 using WebAPI_JWT_Auth_Example.Models;
 
 namespace WebAPI_JWT_Auth_Example.Data
@@ -32,6 +33,7 @@ namespace WebAPI_JWT_Auth_Example.Data
                     await userManager.CreateAsync(user, "S1ngle_Boy");
                     user = await userManager.FindByEmailAsync(user.Email);
                     await userManager.AddToRoleAsync(user, "user");
+                    
 
                     // create default admin
                     var admin = new ApplicationUser { UserName = "SecondHand", Email = "2ndhand@gmail.com" };
