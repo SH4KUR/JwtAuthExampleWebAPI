@@ -1,14 +1,10 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
-using Microsoft.Extensions.DependencyInjection;
+﻿using Microsoft.Extensions.DependencyInjection;
 using WebAPI_JWT_Auth_Example.Services;
 using WebAPI_JWT_Auth_Example.Services.Interfaces;
 
-namespace WebAPI_JWT_Auth_Example.Extensions
+namespace WebAPI_JWT_Auth_Example.Configuration
 {
-    public static class ServiceCollectionsExtension
+    public static class ConfigureServices
     {
         public static void AddServices(this IServiceCollection serviceCollection)
         {
