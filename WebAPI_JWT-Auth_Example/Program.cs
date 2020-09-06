@@ -19,6 +19,7 @@ namespace WebAPI_JWT_Auth_Example
 
             using (var scope = host.Services.CreateScope())
             {
+                // context db seed
                 var services = scope.ServiceProvider;
                 await ApplicationContextSeed.SeedAsync(services);
             }

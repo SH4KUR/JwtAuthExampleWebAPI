@@ -10,7 +10,7 @@ namespace WebAPI_JWT_Auth_Example.Configuration
         {
             serviceCollection.AddScoped(typeof(ITokenService), typeof(TokenService));
             serviceCollection.AddScoped(typeof(IUserService), typeof(UserService));
-            serviceCollection.AddScoped(typeof(IItemsService), typeof(ItemsService));
+            serviceCollection.AddScoped(typeof(IItemService), typeof(ItemService));
         }
     }
 }

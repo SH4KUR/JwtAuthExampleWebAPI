@@ -6,7 +6,7 @@ using WebAPI_JWT_Auth_Example.Services.Interfaces;
 
 namespace WebAPI_JWT_Auth_Example.Services
 {
-    public class ItemsService : IItemsService
+    public class ItemService : IItemService
     {
     }
 }

@@ -34,7 +34,6 @@ namespace WebAPI_JWT_Auth_Example.Data
                     user = await userManager.FindByEmailAsync(user.Email);
                     await userManager.AddToRoleAsync(user, "user");
                     
-
                     // create default admin
                     var admin = new ApplicationUser { UserName = "SecondHand", Email = "2ndhand@gmail.com" };
                     await userManager.CreateAsync(admin, "For_Life19");
@@ -44,6 +43,7 @@ namespace WebAPI_JWT_Auth_Example.Data
 
                 if (!applicationContext.Items.Any())
                 {
+                    // create default items
                     await applicationContext.Items.AddRangeAsync(GetItemsSeed());
                     await applicationContext.SaveChangesAsync();
                 }
