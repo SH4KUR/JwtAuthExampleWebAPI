@@ -12,7 +12,5 @@ namespace WebAPI_JWT_Auth_Example.Helpers
         public string Issuer { get; set; }
 
         public string Audience { get; set; }
-
-        public int Lifetime { get; set; }
     }
 }

@@ -1,7 +1,9 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Security.Claims;
 using System.Threading.Tasks;
+using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
@@ -19,16 +21,11 @@ namespace WebAPI_JWT_Auth_Example.Controllers
         private readonly ApplicationContext _context;
         private AppSettings _appSettings;
 
-        public UsersController(ApplicationContext context, IConfiguration configuration, IOptions<AppSettings> options)
+        public UsersController(ApplicationContext context, IOptions<AppSettings> options)
         {
             _context = context;
             _appSettings = options.Value;
         }
 
-        [HttpGet]
-        public async Task<ActionResult<IEnumerable<ApplicationUser>>> GetUsers()
-        {
-            return await _context.Users.ToListAsync();
-        }
     }
 }

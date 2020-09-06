@@ -10,6 +10,7 @@ using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using Microsoft.IdentityModel.Tokens;
 using WebAPI_JWT_Auth_Example.Data;
+using WebAPI_JWT_Auth_Example.Extensions;
 using WebAPI_JWT_Auth_Example.Helpers;
 using WebAPI_JWT_Auth_Example.Models;
 
@@ -36,6 +37,9 @@ namespace WebAPI_JWT_Auth_Example
 
             services.AddCors();
             services.AddControllers();
+
+            // extension for register services
+            services.AddServices();
 
             // configure strongly typed settings objects
             var jwtAppSettingSection = Configuration.GetSection("JwtSettings");
