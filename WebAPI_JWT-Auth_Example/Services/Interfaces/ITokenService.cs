@@ -1,8 +1,7 @@
 ﻿using System.Threading.Tasks;
-using WebAPI_JWT_Auth_Example.Entities;
-using WebAPI_JWT_Auth_Example.Models;
+using JwtAuthExample.Core.Entities;
 
-namespace WebAPI_JWT_Auth_Example.Services.Interfaces
+namespace JwtAuthExample.WebAPI.Services.Interfaces
 {
     public interface ITokenService
     {

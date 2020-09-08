@@ -1,14 +1,8 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Diagnostics.Eventing.Reader;
-using System.Linq;
-using System.Threading.Tasks;
-using Microsoft.AspNetCore.Mvc;
+﻿using JwtAuthExample.WebAPI.Helpers;
+using JwtAuthExample.WebAPI.Services.Interfaces;
 using Microsoft.Extensions.Options;
-using WebAPI_JWT_Auth_Example.Helpers;
-using WebAPI_JWT_Auth_Example.Services.Interfaces;
 
-namespace WebAPI_JWT_Auth_Example.Services
+namespace JwtAuthExample.WebAPI.Services
 {
     public class UserService : IUserService
     {

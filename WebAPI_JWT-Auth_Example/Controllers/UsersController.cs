@@ -1,22 +1,14 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Security.Claims;
-using System.Threading.Tasks;
-using Microsoft.AspNetCore.Authentication;
+﻿using System.Threading.Tasks;
+using JwtAuthExample.Core.Entities;
+using JwtAuthExample.Infrastructure.Data;
+using JwtAuthExample.WebAPI.Helpers;
+using JwtAuthExample.WebAPI.Models;
+using JwtAuthExample.WebAPI.Services.Interfaces;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
-using Microsoft.EntityFrameworkCore;
-using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.Options;
-using WebAPI_JWT_Auth_Example.Data;
-using WebAPI_JWT_Auth_Example.Entities;
-using WebAPI_JWT_Auth_Example.Helpers;
-using WebAPI_JWT_Auth_Example.Models;
-using WebAPI_JWT_Auth_Example.Services;
-using WebAPI_JWT_Auth_Example.Services.Interfaces;
 
-namespace WebAPI_JWT_Auth_Example.Controllers
+namespace JwtAuthExample.WebAPI.Controllers
 {
     [Route("api/[controller]")]
     [ApiController]

@@ -1,16 +1,13 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using JwtAuthExample.Core.Entities;
+using JwtAuthExample.Infrastructure.Data;
 using Microsoft.AspNetCore.Authorization;
-using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
-using WebAPI_JWT_Auth_Example.Data;
-using WebAPI_JWT_Auth_Example.Entities;
-using WebAPI_JWT_Auth_Example.Models;
 
-namespace WebAPI_JWT_Auth_Example.Controllers
+namespace JwtAuthExample.WebAPI.Controllers
 {
     [Route("api/[controller]")]
     [Authorize]

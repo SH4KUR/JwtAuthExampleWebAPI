@@ -1,5 +1,9 @@
 using System;
 using System.Text;
+using JwtAuthExample.Core.Entities;
+using JwtAuthExample.Infrastructure.Data;
+using JwtAuthExample.WebAPI.Configuration;
+using JwtAuthExample.WebAPI.Helpers;
 using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
@@ -9,13 +13,8 @@ using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using Microsoft.IdentityModel.Tokens;
-using WebAPI_JWT_Auth_Example.Configuration;
-using WebAPI_JWT_Auth_Example.Data;
-using WebAPI_JWT_Auth_Example.Entities;
-using WebAPI_JWT_Auth_Example.Helpers;
-using WebAPI_JWT_Auth_Example.Models;
 
-namespace WebAPI_JWT_Auth_Example
+namespace JwtAuthExample.WebAPI
 {
     public class Startup
     {

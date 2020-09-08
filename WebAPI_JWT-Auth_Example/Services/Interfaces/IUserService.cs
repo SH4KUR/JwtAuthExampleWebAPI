@@ -1,4 +1,4 @@
-﻿namespace WebAPI_JWT_Auth_Example.Services.Interfaces
+﻿namespace JwtAuthExample.WebAPI.Services.Interfaces
 {
     public interface IUserService
     {

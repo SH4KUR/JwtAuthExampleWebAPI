@@ -1,4 +1,4 @@
-﻿namespace WebAPI_JWT_Auth_Example.Entities
+﻿namespace JwtAuthExample.Core.Entities
 {
     public class Item
     {

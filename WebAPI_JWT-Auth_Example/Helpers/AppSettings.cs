@@ -1,9 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
-
-namespace WebAPI_JWT_Auth_Example.Helpers
+﻿namespace JwtAuthExample.WebAPI.Helpers
 {
     public class AppSettings
     {

@@ -1,15 +1,10 @@
-using System;
-using System.Collections.Generic;
-using System.Linq;
 using System.Threading.Tasks;
+using JwtAuthExample.Infrastructure.Data;
 using Microsoft.AspNetCore.Hosting;
-using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
-using Microsoft.Extensions.Logging;
-using WebAPI_JWT_Auth_Example.Data;
 
-namespace WebAPI_JWT_Auth_Example
+namespace JwtAuthExample.WebAPI
 {
     public class Program
     {

@@ -1,8 +1,8 @@
-﻿using Microsoft.Extensions.DependencyInjection;
-using WebAPI_JWT_Auth_Example.Services;
-using WebAPI_JWT_Auth_Example.Services.Interfaces;
+﻿using JwtAuthExample.WebAPI.Services;
+using JwtAuthExample.WebAPI.Services.Interfaces;
+using Microsoft.Extensions.DependencyInjection;
 
-namespace WebAPI_JWT_Auth_Example.Configuration
+namespace JwtAuthExample.WebAPI.Configuration
 {
     public static class ConfigureServices
     {

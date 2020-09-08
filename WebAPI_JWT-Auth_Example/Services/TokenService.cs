@@ -5,15 +5,14 @@ using System.Linq;
 using System.Security.Claims;
 using System.Text;
 using System.Threading.Tasks;
+using JwtAuthExample.Core.Entities;
+using JwtAuthExample.WebAPI.Helpers;
+using JwtAuthExample.WebAPI.Services.Interfaces;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.Extensions.Options;
 using Microsoft.IdentityModel.Tokens;
-using WebAPI_JWT_Auth_Example.Entities;
-using WebAPI_JWT_Auth_Example.Helpers;
-using WebAPI_JWT_Auth_Example.Models;
-using WebAPI_JWT_Auth_Example.Services.Interfaces;
 
-namespace WebAPI_JWT_Auth_Example.Services
+namespace JwtAuthExample.WebAPI.Services
 {
     public class TokenService : ITokenService
     {
