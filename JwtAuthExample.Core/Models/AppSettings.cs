@@ -1,4 +1,4 @@
-﻿namespace JwtAuthExample.WebAPI.Helpers
+﻿namespace JwtAuthExample.Core.Models
 {
     public class AppSettings
     {
