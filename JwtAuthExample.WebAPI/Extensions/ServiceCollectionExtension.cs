@@ -2,9 +2,9 @@
 using JwtAuthExample.Core.Services.Interfaces;
 using Microsoft.Extensions.DependencyInjection;
 
-namespace JwtAuthExample.WebAPI.Configuration
+namespace JwtAuthExample.WebAPI.Extensions
 {
-    public static class ConfigureServices
+    public static class ServiceCollectionExtension
     {
         public static void AddServices(this IServiceCollection serviceCollection)
         {

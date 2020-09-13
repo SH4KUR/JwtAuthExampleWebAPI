@@ -3,7 +3,7 @@ using System.Text;
 using JwtAuthExample.Core.Entities;
 using JwtAuthExample.Core.Models;
 using JwtAuthExample.Infrastructure.Data;
-using JwtAuthExample.WebAPI.Configuration;
+using JwtAuthExample.WebAPI.Extensions;
 using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
