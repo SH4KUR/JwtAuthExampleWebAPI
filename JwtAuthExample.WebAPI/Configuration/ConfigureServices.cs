@@ -1,4 +1,6 @@
-﻿using JwtAuthExample.WebAPI.Services;
+﻿using JwtAuthExample.Core.Services;
+using JwtAuthExample.Core.Services.Interfaces;
+using JwtAuthExample.WebAPI.Services;
 using JwtAuthExample.WebAPI.Services.Interfaces;
 using Microsoft.Extensions.DependencyInjection;
 
