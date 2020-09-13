@@ -3,7 +3,7 @@ using JwtAuthExample.Core.Repositories.Interfaces;
 
 namespace JwtAuthExample.Core.Services.Interfaces
 {
-    public interface IUserService : IRepository
+    public interface IUserService
     {
     }
 }

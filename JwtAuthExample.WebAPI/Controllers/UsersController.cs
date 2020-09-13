@@ -1,8 +1,8 @@
 ﻿using System.Threading.Tasks;
+using JwtAuthExample.Core.Data;
 using JwtAuthExample.Core.Entities;
 using JwtAuthExample.Core.Models;
 using JwtAuthExample.Core.Services.Interfaces;
-using JwtAuthExample.Infrastructure.Data;
 using JwtAuthExample.WebAPI.Models;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;

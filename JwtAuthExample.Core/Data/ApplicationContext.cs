@@ -2,7 +2,7 @@
 using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore;
 
-namespace JwtAuthExample.Infrastructure.Data
+namespace JwtAuthExample.Core.Data
 {
     public class ApplicationContext : IdentityDbContext<ApplicationUser>
     {

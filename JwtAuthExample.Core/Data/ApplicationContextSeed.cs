@@ -6,7 +6,7 @@ using JwtAuthExample.Core.Entities;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.Extensions.DependencyInjection;
 
-namespace JwtAuthExample.Infrastructure.Data
+namespace JwtAuthExample.Core.Data
 {
     public static class ApplicationContextSeed
     {

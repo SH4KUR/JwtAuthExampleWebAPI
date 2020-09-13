@@ -1,5 +1,5 @@
 using System.Threading.Tasks;
-using JwtAuthExample.Infrastructure.Data;
+using JwtAuthExample.Core.Data;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
