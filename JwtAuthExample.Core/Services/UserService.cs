@@ -10,7 +10,7 @@ namespace JwtAuthExample.Core.Services
     {
         private readonly SignInManager<ApplicationUser> _signInManager;
 
-        protected UserService(UserManager<ApplicationUser> manager, SignInManager<ApplicationUser> signInManager) : base(manager)
+        public UserService(UserManager<ApplicationUser> manager, SignInManager<ApplicationUser> signInManager) : base(manager)
         {
             _signInManager = signInManager;
         }
