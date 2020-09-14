@@ -14,28 +14,22 @@ namespace JwtAuthExample.WebAPI.Controllers
     [ApiController]
     public class UsersController : ControllerBase
     {
-        private readonly ApplicationContext _context;   //TODO: Refactoring
-        private AppSettings _appSettings;
-        private readonly UserManager<ApplicationUser> _userManager;
-        private readonly SignInManager<ApplicationUser> _signInManager;
+        private readonly IUserService _userService;
         private readonly ITokenService _tokenService;
 
-        public UsersController(ITokenService tokenService, ApplicationContext context, IOptions<AppSettings> options, UserManager<ApplicationUser> userManager, SignInManager<ApplicationUser> signInManager)
+        public UsersController(IUserService userService, ITokenService tokenService)
         {  
-            _context = context;
-            _userManager = userManager;
-            _signInManager = signInManager;
+            _userService = userService;
             _tokenService = tokenService;
-            _appSettings = options.Value;
         }
 
         [Route("login")]
         [HttpPost]
         public async Task<IActionResult> Login([FromBody] LoginModel loginModel)
         {
-            var user = await _userManager.FindByNameAsync(loginModel.UserName);
-            var sign = await _signInManager.PasswordSignInAsync(user, loginModel.Password, false, false);
-
+            var sign = await _userService.IsSignIn(loginModel.UserName, loginModel.Password);
+            var user = await _userService.GetByUserNameAsync(loginModel.UserName);
+            
             if (sign.Succeeded)
             {
                 var token = await _tokenService.GetTokenAsync(user);

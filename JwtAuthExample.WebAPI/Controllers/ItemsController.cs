@@ -1,9 +1,7 @@
 ﻿using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
-using JwtAuthExample.Core.Data;
 using JwtAuthExample.Core.Entities;
-using JwtAuthExample.Core.Services;
 using JwtAuthExample.Core.Services.Interfaces;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;

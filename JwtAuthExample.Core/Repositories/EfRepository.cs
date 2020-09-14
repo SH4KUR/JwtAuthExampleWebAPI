@@ -1,6 +1,5 @@
 ﻿using JwtAuthExample.Core.Repositories.Interfaces;
 using System.Collections.Generic;
-using System.Linq;
 using System.Threading.Tasks;
 using JwtAuthExample.Core.Data;
 using Microsoft.EntityFrameworkCore;
