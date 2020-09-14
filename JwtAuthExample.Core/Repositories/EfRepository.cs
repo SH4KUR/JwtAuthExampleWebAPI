@@ -17,7 +17,7 @@ namespace JwtAuthExample.Core.Repositories
 
         public async Task<T> GetByIdAsync(int id) => await _context.Set<T>().FindAsync(id);
 
-        public async Task<IReadOnlyList<T>> ListAllAsync() => await _context.Set<T>().ToListAsync();
+        public async Task<IReadOnlyList<T>> GetAllAsync() => await _context.Set<T>().ToListAsync();
 
         public async Task<T> AddAsync(T entity)
         {

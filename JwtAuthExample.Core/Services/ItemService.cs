@@ -15,7 +15,7 @@ namespace JwtAuthExample.Core.Services
 
         public async Task<double> SumAllItemsPrices()
         {
-            var items = await ListAllAsync();
+            var items = await GetAllAsync();
             return items.Sum(x => x.Price);
         }
     }

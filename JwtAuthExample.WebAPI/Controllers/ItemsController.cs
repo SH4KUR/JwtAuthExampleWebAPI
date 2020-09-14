@@ -23,10 +23,7 @@ namespace JwtAuthExample.WebAPI.Controllers
 
         // GET: api/Items
         [HttpGet]
-        public async Task<IReadOnlyList<Item>> GetItems()
-        {
-            return await _itemService.ListAllAsync();
-        }
+        public async Task<IReadOnlyList<Item>> GetItems() => await _itemService.GetAllAsync();
 
         // GET: api/Items/5
         [HttpGet("{id}")]
@@ -94,7 +91,7 @@ namespace JwtAuthExample.WebAPI.Controllers
 
         private async Task<bool> ItemExists(int id)
         {
-            var items = await _itemService.ListAllAsync();
+            var items = await _itemService.GetAllAsync();
             return items.Any(x => x.ItemId == id);
         }
     }
