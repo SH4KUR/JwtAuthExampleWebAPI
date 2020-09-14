@@ -1,8 +1,10 @@
-﻿using System.Threading.Tasks;
+﻿using System.Linq;
+using System.Threading.Tasks;
 using JwtAuthExample.Core.Entities;
 using JwtAuthExample.Core.Repositories;
 using JwtAuthExample.Core.Services.Interfaces;
 using Microsoft.AspNetCore.Identity;
+using Microsoft.EntityFrameworkCore.Internal;
 
 namespace JwtAuthExample.Core.Services
 {

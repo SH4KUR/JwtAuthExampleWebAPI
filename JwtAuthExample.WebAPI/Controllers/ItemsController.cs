@@ -3,6 +3,8 @@ using System.Linq;
 using System.Threading.Tasks;
 using JwtAuthExample.Core.Data;
 using JwtAuthExample.Core.Entities;
+using JwtAuthExample.Core.Services;
+using JwtAuthExample.Core.Services.Interfaces;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
@@ -14,25 +16,25 @@ namespace JwtAuthExample.WebAPI.Controllers
     [ApiController]
     public class ItemsController : ControllerBase
     {
-        private readonly ApplicationContext _context;
+        private readonly IItemService _itemService;
 
-        public ItemsController(ApplicationContext context)
+        public ItemsController(IItemService itemService)
         {
-            _context = context;
+            _itemService = itemService;
         }
 
         // GET: api/Items
         [HttpGet]
-        public async Task<ActionResult<IEnumerable<Item>>> GetItems()
+        public async Task<IReadOnlyList<Item>> GetItems()
         {
-            return await _context.Items.ToListAsync();
+            return await _itemService.ListAllAsync();
         }
 
         // GET: api/Items/5
         [HttpGet("{id}")]
         public async Task<ActionResult<Item>> GetItem(int id)
         {
-            var item = await _context.Items.FindAsync(id);
+            var item = await _itemService.GetByIdAsync(id);
 
             if (item == null)
             {
@@ -50,16 +52,14 @@ namespace JwtAuthExample.WebAPI.Controllers
             {
                 return BadRequest();
             }
-
-            _context.Entry(item).State = EntityState.Modified;
-
+            
             try
             {
-                await _context.SaveChangesAsync();
+                await _itemService.UpdateAsync(item);
             }
             catch (DbUpdateConcurrencyException)
             {
-                if (!ItemExists(id))
+                if (!await ItemExists(id))
                 {
                     return NotFound();
                 }
@@ -76,9 +76,7 @@ namespace JwtAuthExample.WebAPI.Controllers
         [HttpPost]
         public async Task<ActionResult<Item>> PostItem(Item item)
         {
-            await _context.Items.AddAsync(item);
-            await _context.SaveChangesAsync();
-
+            await _itemService.AddAsync(item);
             return CreatedAtAction("GetItem", new { id = item.ItemId }, item);
         }
 
@@ -86,21 +84,20 @@ namespace JwtAuthExample.WebAPI.Controllers
         [HttpDelete("{id}")]
         public async Task<ActionResult<Item>> DeleteItem(int id)
         {
-            var item = await _context.Items.FindAsync(id);
+            var item = await _itemService.GetByIdAsync(id);
             if (item == null)
             {
                 return NotFound();
             }
 
-            _context.Items.Remove(item);
-            await _context.SaveChangesAsync();
-
+            await _itemService.DeleteAsync(item);
             return item;
         }
 
-        private bool ItemExists(int id)
+        private async Task<bool> ItemExists(int id)
         {
-            return _context.Items.Any(e => e.ItemId == id);
+            var items = await _itemService.ListAllAsync();
+            return items.Any(x => x.ItemId == id);
         }
     }
 }
