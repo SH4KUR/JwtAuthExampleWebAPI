@@ -1,5 +1,6 @@
 using System;
 using System.Text;
+using Autofac;
 using JwtAuthExample.Core.Data;
 using JwtAuthExample.Core.Entities;
 using JwtAuthExample.Core.Models;
@@ -47,8 +48,8 @@ namespace JwtAuthExample.WebAPI
 
             services.AddControllers();
 
-            // extension for configure services
-            services.AddServices();
+            // extension for configure services by Microsoft.Extensions.DependencyInjection;
+            // services.AddServices();
 
             // configure strongly typed settings objects
             var jwtAppSettingSection = Configuration.GetSection("JwtSettings");
@@ -83,6 +84,12 @@ namespace JwtAuthExample.WebAPI
                 });
         }
 
+        public void ConfigureContainer(ContainerBuilder builder)
+        {
+            // register autofac container
+            builder.RegisterModule(new AutofacModule());
+        }
+        
         public void Configure(IApplicationBuilder app, IWebHostEnvironment env)
         {
             if (env.IsDevelopment())
