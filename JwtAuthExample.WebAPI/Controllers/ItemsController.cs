@@ -21,11 +21,11 @@ namespace JwtAuthExample.WebAPI.Controllers
             _itemService = itemService;
         }
 
-        // GET: api/Items
+        // GET: api/items
         [HttpGet]
         public async Task<IReadOnlyList<Item>> GetItems() => await _itemService.GetAllAsync();
 
-        // GET: api/Items/5
+        // GET: api/items/5
         [HttpGet("{id}")]
         public async Task<ActionResult<Item>> GetItem(int id)
         {
@@ -39,7 +39,7 @@ namespace JwtAuthExample.WebAPI.Controllers
             return item;
         }
 
-        // PUT: api/Items/5
+        // PUT: api/items/5
         [HttpPut("{id}")]
         public async Task<IActionResult> PutItem(int id, Item item)
         {
@@ -67,7 +67,7 @@ namespace JwtAuthExample.WebAPI.Controllers
             return NoContent();
         }
 
-        // POST: api/Items
+        // POST: api/items
         [HttpPost]
         public async Task<ActionResult<Item>> PostItem(Item item)
         {
@@ -75,7 +75,7 @@ namespace JwtAuthExample.WebAPI.Controllers
             return CreatedAtAction("GetItem", new { id = item.ItemId }, item);
         }
 
-        // DELETE: api/Items/5
+        // DELETE: api/items/5
         [HttpDelete("{id}")]
         public async Task<ActionResult<Item>> DeleteItem(int id)
         {

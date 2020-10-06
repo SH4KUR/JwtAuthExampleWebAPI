@@ -23,20 +23,19 @@ namespace JwtAuthExample.WebAPI.Controllers
             _tokenService = tokenService;
         }
 
+        // POST: api/users/login
         [Route("login")]
         [HttpPost]
         public async Task<IActionResult> Login([FromBody] LoginModel loginModel)
         {
             var sign = await _userService.IsSignIn(loginModel.UserName, loginModel.Password);
             var user = await _userService.GetByUserNameAsync(loginModel.UserName);
-            
-            if (sign.Succeeded)
-            {
-                var token = await _tokenService.GetTokenAsync(user);
-                return Ok(new AuthenticateResponse { UserName = user.UserName, Email = user.Email, Token = token });
-            }
 
-            return Unauthorized();
+            if (!sign.Succeeded) 
+                return Unauthorized();
+            
+            var token = await _tokenService.GetTokenAsync(user);
+            return Ok(new AuthenticateResponse { UserName = user.UserName, Email = user.Email, Token = token });
         }
     }
 }
