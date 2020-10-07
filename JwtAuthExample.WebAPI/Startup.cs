@@ -1,6 +1,7 @@
 using System;
 using System.Text;
 using Autofac;
+using FluentValidation.AspNetCore;
 using JwtAuthExample.Core.Data;
 using JwtAuthExample.Core.Entities;
 using JwtAuthExample.Core.Models;
@@ -46,7 +47,8 @@ namespace JwtAuthExample.WebAPI
                 });
             });
 
-            services.AddControllers();
+            services.AddControllers()
+                .AddFluentValidation();
 
             // extension for configure services by Microsoft.Extensions.DependencyInjection;
             // services.AddServices();
