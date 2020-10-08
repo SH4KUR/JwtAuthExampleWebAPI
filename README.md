@@ -4,8 +4,9 @@ A simple project with JWT basic authentication for ASP.NET Core WebAPIs.
 
 The project was used for teaching and learning about some new technologies, frameworks, etc:
 
-* RestAPI
-* JWT Authentication
+* REST API
 * Repository-Service Pattern
+* JWT Authentication
 * Autofac
-* React
+* FluentValidation
+* ...
